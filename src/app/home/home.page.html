@@ -3,8 +3,8 @@
     <ion-title>
       Perfis
     </ion-title>
-    <ion-buttons slot = "end">
-      <ion-button (click) = "abrir_modal()">
+    <ion-buttons slot="end">
+      <ion-button (click)="abrir_modal()">
         <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -15,9 +15,8 @@
   <ion-slides>
 
     <ion-slide *ngFor="let perfil of perfis">
-      
-      <!-- Perfil de usuário 1-->
       <ion-card>
+        <!-- Perfil de usuário 1-->
         <img src="{{perfil.avatar}}" alt="Avatar">
         <ion-card-header>
           <ion-card-title>{{perfil.nome}}</ion-card-title>
@@ -28,14 +27,13 @@
         <!-- Perfil de usuário 2 -->
         <ion-card-content>
           <ion-item>
-            <ion-icon name="heart-empty" slot="start" (click) = "likes(perfil)"></ion-icon>
+            <ion-icon name="heart-empty" slot="start" (click)="likes(perfil)"></ion-icon>
             <ion-badge slot="end">{{perfil.likes}}</ion-badge>
           </ion-item>
         </ion-card-content>
         <!-- Fim do card de usuário 2-->
-
       </ion-card>
     </ion-slide>
+    
   </ion-slides>
-
 </ion-content>

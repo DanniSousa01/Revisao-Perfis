@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PerfilModalPage } from '../perfil-modal/perfil-modal.page';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,22 +9,12 @@ import { PerfilModalPage } from '../perfil-modal/perfil-modal.page';
 })
 export class HomePage {
   perfis = [];
-  constructor(public modalController: ModalController) {
-    this.perfis = [
-      // Criação dos perfis de modo estático !      
-      {
-        'avatar': 'https://images.all-free-download.com/images/graphicthumb/andrew_101750.jpg',
-        'nome': 'João de Paulistana',
-        'idade': 20,
-        'likes': 0
-      },
-      {
-        'avatar': 'https://badhan.org/img/avatars/defaultFemalePP.png',
-        'nome': 'Julia de Jacobina',
-        'idade': 18,
-        'likes': 0
+  constructor(public modalController: ModalController, private storage: Storage) {
+    this.storage.get('perfil').then((perfil) => {
+      if (perfil) {
+        this.perfis = perfil
       }
-    ]
+    })
   }
 
   likes(perfil) {
@@ -40,7 +30,8 @@ export class HomePage {
     //preparação para quando fechar o modal, ele executa esse código ! (quando clica no OKAY)
     modal.onDidDismiss().then((retorno) => {
       //Será executado somente após o Modal ter sído fechado
-      this.perfis.push(retorno);
+      this.perfis.push(retorno.data);
+      this.storage.set('perfil', this.perfis);
     });
     modal.present();
   }

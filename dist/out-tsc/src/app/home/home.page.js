@@ -1,7 +1,10 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PerfilModalPage } from '../perfil-modal/perfil-modal.page';
 var HomePage = /** @class */ (function () {
-    function HomePage() {
+    function HomePage(modalController) {
+        this.modalController = modalController;
         this.perfis = [];
         this.perfis = [
             // Criação dos perfis de modo estático !      
@@ -22,13 +25,36 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.likes = function (perfil) {
         perfil.likes = perfil.likes + 1;
     };
+    // Criação do Modal, onde ele irá abrir o modal
+    HomePage.prototype.abrir_modal = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var modal;
+            var _this = this;
+            return tslib_1.__generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalController.create({
+                            component: PerfilModalPage
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        //preparação para quando fechar o modal, ele executa esse código ! (quando clica no OKAY)
+                        modal.onDidDismiss().then(function (retorno) {
+                            //Será executado somente após o Modal ter sído fechado
+                            _this.perfis.push(retorno);
+                        });
+                        modal.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     HomePage = tslib_1.__decorate([
         Component({
             selector: 'app-home',
             templateUrl: 'home.page.html',
             styleUrls: ['home.page.scss'],
         }),
-        tslib_1.__metadata("design:paramtypes", [])
+        tslib_1.__metadata("design:paramtypes", [ModalController])
     ], HomePage);
     return HomePage;
 }());

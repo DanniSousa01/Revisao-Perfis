@@ -21,6 +21,11 @@ export class PerfilModalPage implements OnInit {
 
   ngOnInit() {
   }
+
+  add() {
+    this.modalController.dismiss(this.perfil)
+  }
+
   //Onde vai ser criado a parte da camera
   take_picture() {
     const options: CameraOptions = {
@@ -28,8 +33,8 @@ export class PerfilModalPage implements OnInit {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-
     }
+
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
@@ -37,5 +42,6 @@ export class PerfilModalPage implements OnInit {
     }, (err) => {
       // Handle error
     });
+  
   }
 }

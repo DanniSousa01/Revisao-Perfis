@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>PerfilModal</ion-title>
+    <ion-title> Novo Cadastro </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,17 +8,20 @@
   <!--Criação do Formulário-->
   <ion-list>
     <ion-item>
-      <ion-label>Nome:</ion-label>
+      <ion-label> Nome: </ion-label>
       <ion-input [(ngModel)] = "perfil.nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Idade:</ion-label>
+      <ion-label> Idade: </ion-label>
       <ion-input [(ngModel)] = "perfil.idade"></ion-input>
     </ion-item>
+
     <ion-item>
-      <img src="{{perfil.avatar}}" alt="Avatar">
-      <ion-button (click) = "take_picture()">Take</ion-button>
+      <img src="{{perfil.avatar}}" alt="">
+      <ion-button (click) = "take_picture()" slot = "end"> <ion-icon name="camera"></ion-icon></ion-button>
     </ion-item>
+
+    <ion-button expand="full" (click)="add()" > OK </ion-button>
   </ion-list>
   <!--Fim do Formulário-->
 </ion-content>
