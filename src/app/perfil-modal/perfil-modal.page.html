@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PerfilModal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Criação do Formulário-->
+  <ion-list>
+    <ion-item>
+      <ion-label>Nome:</ion-label>
+      <ion-input [(ngModel)] = "perfil.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Idade:</ion-label>
+      <ion-input [(ngModel)] = "perfil.idade"></ion-input>
+    </ion-item>
+    <ion-item>
+      <img src="{{perfil.avatar}}" alt="Avatar">
+      <ion-button (click) = "take_picture()">Take</ion-button>
+    </ion-item>
+  </ion-list>
+  <!--Fim do Formulário-->
+</ion-content>

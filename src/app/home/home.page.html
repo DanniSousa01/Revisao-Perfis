@@ -3,12 +3,19 @@
     <ion-title>
       Perfis
     </ion-title>
+    <ion-buttons slot = "end">
+      <ion-button (click) = "abrir_modal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-slides>
+
     <ion-slide *ngFor="let perfil of perfis">
+      
       <!-- Perfil de usuário 1-->
       <ion-card>
         <img src="{{perfil.avatar}}" alt="Avatar">
@@ -17,6 +24,7 @@
           <ion-card-subtitle>{{perfil.idade}} Anos</ion-card-subtitle>
         </ion-card-header>
         <!-- Fim do card de usuário 1-->
+
         <!-- Perfil de usuário 2 -->
         <ion-card-content>
           <ion-item>
@@ -25,7 +33,6 @@
           </ion-item>
         </ion-card-content>
         <!-- Fim do card de usuário 2-->
-
 
       </ion-card>
     </ion-slide>
