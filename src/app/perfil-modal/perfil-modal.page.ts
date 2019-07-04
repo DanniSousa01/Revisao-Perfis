@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { HttpClient } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
+import { PerfilService } from '../services/perfil.service';
 
 @Component({
   selector: 'app-perfil-modal',
@@ -8,9 +11,11 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./perfil-modal.page.scss'],
 })
 export class PerfilModalPage implements OnInit {
-  perfil;
+  perfil: any;
 
-  constructor(public modalController: ModalController, private camera: Camera) {
+  constructor(public modalController: ModalController, private camera: Camera,
+    private http: HttpClient, public loadingController: LoadingController,
+    private perfilService: PerfilService) {
     this.perfil = {
       'avatar': '',
       'nome': '',
@@ -21,9 +26,9 @@ export class PerfilModalPage implements OnInit {
 
   ngOnInit() {
   }
-
+  
   add() {
-    this.modalController.dismiss(this.perfil)
+   this.modalController.dismiss(this.perfil)
   }
 
   //Onde vai ser criado a parte da camera
@@ -42,6 +47,6 @@ export class PerfilModalPage implements OnInit {
     }, (err) => {
       // Handle error
     });
-  
+
   }
 }
