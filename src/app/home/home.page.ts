@@ -35,7 +35,21 @@ export class HomePage {
 
   //Contagem de Likes
   likes(perfil) {
-    perfil.likes = perfil.likes + 1;
+        //post para essa url ai, desse contato ai
+    //Loading
+    this.loadingController.create({
+      message: 'OK',
+    }).then((loader) => {
+      loader.present();
+      perfil.likes = perfil.likes + 1;
+      // retorna o observeibon
+      this.perfilService.edit(perfil).subscribe(
+        (data) => {
+          loader.dismiss();
+        }
+      )
+    });
+
   }
 
   add(perfil) {
